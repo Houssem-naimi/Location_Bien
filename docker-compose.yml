@@ -1,0 +1,50 @@
+services:
+  postgres:
+    container_name: postgres-sql-lb
+    image: postgres
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: property_rental
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - spring-demo
+    restart: unless-stopped
+
+  mail-dev:
+    container_name: mail-dev-lb
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+    networks:
+      - spring-demo
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8888:80"  # pgAdmin will be accessible via http://localhost:8888
+    environment:
+      PGADMIN_DEFAULT_EMAIL: naimihoussem278@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: houssem1997
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - spring-demo
+
+networks:
+  spring-demo:
+    driver: bridge
+
+volumes:
+  postgres:
+    driver: local
+  pgadmin-data:
+    driver: local
