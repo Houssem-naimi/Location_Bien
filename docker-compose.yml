@@ -3,8 +3,8 @@ services:
     container_name: postgres-sql-lb
     image: postgres
     environment:
-      POSTGRES_USER: username
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user_name
+      POSTGRES_PASSWORD: userhoussem
       POSTGRES_DB: property_rental
       PGDATA: /var/lib/postgresql/data
     volumes:
@@ -32,8 +32,8 @@ services:
     ports:
       - "8888:80"  # pgAdmin will be accessible via http://localhost:8888
     environment:
-      PGADMIN_DEFAULT_EMAIL: naimihoussem278@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: houssem1997
+      PGADMIN_DEFAULT_EMAIL: foulen@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: root
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     networks:

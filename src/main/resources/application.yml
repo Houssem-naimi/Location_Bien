@@ -1,12 +1,12 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/property_rental
-    username: username
-    password: password
+    username: user_name
+    password: userhoussem
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate:
@@ -16,12 +16,22 @@ spring:
   mail:
     host: localhost
     port: 1025
-    username: houssem
-    password: houssem
+    username: user
+    password: root
     properties:
       mail:
         smtp:
           trust: "*"
         auth: true
 
+application:
+  security:
+    jwt:
+      secret-key: ec1f73740b34e184f337074d5fe8c4d70d5e88c1907d067bc3f91ee4353858af
+      expiration: 8640000
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
 
+server:
+  port: 8080
